@@ -33,7 +33,7 @@ def send_QQ_email_plain(content):
     msg = MIMEText(f'签到结果：{content}', 'plain', 'utf-8')
 
     # 判断签到结果是否成功
-    result_status = "✅成功" if "成功" in content else "❌失败"
+    result_status = "成功" if "成功" in content else "失败"
     
     # 设置邮件主题为今天的日期和星期以及签到结果状态
     msg['From'] = f'{sender}'
