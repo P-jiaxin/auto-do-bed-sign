@@ -32,6 +32,8 @@
 USERNAME      # 学工平台的账号
 PASSWORD      # 学工平台的密码
 EMAIL_ADDRESS # 结果发送接收邮箱地址
+SMTP_USERNAME # 发件 QQ 邮箱地址
+SMTP_PASSWORD # 发件 QQ 邮箱授权码（不是 QQ 登录密码）
 ```
 
 > ~~`TOKEN` # 云码平台密钥（v1.2 起已弃用，无需配置）~~
@@ -63,7 +65,8 @@ CREDENTIAL    # 密保答案
    ![img_2.png](gzlg助手/img/img_2.png)
 
 3. **配置定时任务**  
-   按照需要在 `.github/workflows` 目录下修改定时任务的触发时间。
+   `gotobed` 默认在北京时间周日到周四 21:05 执行，对应 GitHub Actions 的 UTC `13:05`。
+   GitHub Actions 的定时任务不是强实时调度，可能出现延迟；21:05 选在查寝窗口前段，可以为延迟留出余量。
 
 4. **查看运行情况**  
    配置成功后，在仓库的 `Actions` 选项卡中查看自动运行情况。
