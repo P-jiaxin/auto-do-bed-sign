@@ -34,12 +34,14 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           TOKEN: ${{ secrets.TOKEN }}
           PRINCIPAL: ${{ secrets.PRINCIPAL }}
           CREDENTIAL: ${{ secrets.CREDENTIAL }}
         run: |
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            python -c "from datetime import datetime; from zoneinfo import ZoneInfo; import sys; now = datetime.now(ZoneInfo('Asia/Shanghai')); print(f'北京时间：{now:%Y-%m-%d %H:%M:%S}'); sys.exit(1) if (now.weekday() in (4, 5) or not (21 <= now.hour < 23)) else None"
+          fi
           python gzlg助手/goToBed.py
         

@@ -31,7 +31,6 @@
 ```env
 USERNAME      # 学工平台的账号
 PASSWORD      # 学工平台的密码
-EMAIL_ADDRESS # 结果发送接收邮箱地址
 SMTP_USERNAME # 发件 QQ 邮箱地址
 SMTP_PASSWORD # 发件 QQ 邮箱授权码（不是 QQ 登录密码）
 ```
@@ -66,7 +65,8 @@ CREDENTIAL    # 密保答案
 
 3. **配置定时任务**  
    `gotobed` 默认在北京时间周日到周四 21:05 执行，对应 GitHub Actions 的 UTC `13:05`。
-   GitHub Actions 的定时任务不是强实时调度，可能出现延迟；21:05 选在查寝窗口前段，可以为延迟留出余量。
+   发件邮箱同时作为收件邮箱，因此不再需要配置 `EMAIL_ADDRESS`。
+   GitHub Actions 的定时任务不是强实时调度，可能出现延迟；如果定时任务晚于北京时间 23:00 才启动，程序会主动阻止查寝接口执行，避免半夜误查。
 
 4. **查看运行情况**  
    配置成功后，在仓库的 `Actions` 选项卡中查看自动运行情况。

@@ -37,7 +37,7 @@ def send_QQ_email_plain(content):
     
     # 设置邮件主题为今天的日期和星期以及签到结果状态
     msg['From'] = f'{sender}'
-    msg['To'] = os.getenv('EMAIL_ADDRESS')
+    msg['To'] = user
     # msg['To'] = '3552971348@qq.com'
     msg['Subject'] = f'查寝 {result_status} {formatted_date}'  # 设置邮件主题
 
@@ -49,8 +49,7 @@ def send_QQ_email_plain(content):
         smtp.login(user, passwd)
 
         # 发送邮件：发送方，接收方，发送的内容
-        smtp.sendmail(sender, os.getenv('EMAIL_ADDRESS'), msg.as_string())
-        # smtp.sendmail(sender, '3552971348@qq.com', msg.as_string())
+        smtp.sendmail(sender, user, msg.as_string())
 
         print('邮件发送成功')
 
